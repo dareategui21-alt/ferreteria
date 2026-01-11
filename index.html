@@ -3,326 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FERRETERÍA KEIRA GERALDINE | Tienda Oficial</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
+    <title>FERRETERÍA DR</title>
     <style>
-        :root {
-            --primary: #002D57; /* Azul Electrotorres */
-            --accent: #FF8A00;  /* Naranja Industrial */
-            --bg: #F8FAFC;
-            --white: #FFFFFF;
+        body { font-family: sans-serif; margin: 0; background: #f0f2f5; padding-bottom: 250px; }
+        header { background: #1a4a7a; color: white; text-align: center; padding: 20px; border-bottom: 4px solid #e31e24; }
+        .logo-dr { width: 80px; background: white; border-radius: 50%; padding: 5px; }
+        
+        .seccion-titulo { width: 100%; text-align: center; color: #1a4a7a; font-weight: bold; margin-top: 20px; text-transform: uppercase; }
+
+        /* Contenedor principal */
+        #lista-productos { 
+            display: flex; flex-wrap: wrap; justify-content: center; 
+            gap: 15px; padding: 20px; max-width: 1000px; margin: 0 auto; 
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.5; }
-
-        /* HEADER PROFESIONAL */
-        header {
-            background-color: var(--primary);
-            padding: 20px 5%;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        
+        /* Cuadros de productos */
+        .tarjeta { 
+            background: white; width: 160px; padding: 15px; border-radius: 12px; 
+            text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column; justify-content: space-between;
         }
+        .img-prod { width: 80px; height: 80px; object-fit: contain; margin: 0 auto; }
+        .tarjeta b { font-size: 0.9rem; display: block; height: 35px; overflow: hidden; margin-top: 10px; }
+        .precio { color: #e31e24; font-weight: bold; display: block; margin: 10px 0; font-size: 1.2rem; }
+        .btn-add { background: #1a4a7a; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        .logo-container img {
-            height: 100px; /* Tamaño optimizado del logo */
-            margin-bottom: 10px;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        nav a:hover { color: var(--accent); }
-
-        /* CONTENIDO PRINCIPAL */
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 30px;
-            padding: 40px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 25px;
-            border-bottom: 3px solid var(--accent);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        /* GRILLA DE PRODUCTOS */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid #E2E8F0;
-            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            border-color: var(--accent);
-        }
-
-        .product-card i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .product-card h3 {
-            font-size: 0.95rem;
-            color: #475569;
-            height: 45px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .price {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .btn-add {
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-        }
-
-        .btn-add:hover { background-color: var(--accent); }
-
-        /* CARRITO LATERAL */
-        .cart-sidebar {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            height: fit-content;
-            position: sticky;
-            top: 180px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            border: 1px solid #E2E8F0;
-        }
-
-        .cart-title {
-            text-align: center;
-            font-weight: 800;
-            font-size: 0.8rem;
-            color: #94A3B8;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        #cart-items { list-style: none; }
-
-        .cart-item {
-            padding: 12px 0;
-            border-bottom: 1px dashed #E2E8F0;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .cart-item i { color: #EF4444; cursor: pointer; }
-
-        .total-box {
-            margin: 25px 0;
-            text-align: center;
-            background: #F1F5F9;
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .total-amount { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
-
-        .btn-ws {
-            background-color: #22C55E;
-            color: var(--white);
-            border: none;
-            padding: 18px;
-            width: 100%;
-            border-radius: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-        }
-
-        .btn-ws:hover { background-color: #16A34A; }
-
-        .payment-methods {
-            margin-top: 25px;
-            text-align: center;
-            border-top: 1px solid #F1F5F9;
-            padding-top: 20px;
-        }
-
-        .payment-methods img { height: 35px; margin: 0 10px; border-radius: 8px; }
-
-        @media (max-width: 1024px) {
-            .container { grid-template-columns: 1fr; }
-            .cart-sidebar { position: static; }
-        }
+        /* Footer */
+        .footer { position: fixed; bottom: 0; width: 100%; background: white; padding: 15px; text-align: center; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+        .pagos img { height: 30px; margin: 0 10px; }
+        .btn-ws { background: #25D366; color: white; text-decoration: none; padding: 15px; display: block; border-radius: 10px; font-weight: bold; max-width: 300px; margin: 10px auto; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img src="https://i.ibb.co/XrnZzH6/logo-keira.png" alt="Ferretería Keira Geraldine">
-        </div>
-        <nav>
-            <a href="#">Catálogo Digital Eléctrico 2026</a>
-        </nav>
-    </header>
+<header>
+    <img src="garantia.png" class="logo-dr">
+    <h1>FERRETERÍA DR</h1>
+</header>
 
-    <div class="container">
-        <section>
-            <h2 class="section-title"><i class="fa-solid fa-plug"></i> Materiales en Stock</h2>
-            <div class="products-grid" id="grid">
-                </div>
-        </section>
+<div id="lista-productos">
+    <p>Cargando catálogo ampliado...</p>
+</div>
 
-        <aside class="cart-sidebar">
-            <div class="cart-title">Mi Carrito de Compras</div>
-            <ul id="cart-items"></ul>
-
-            <div class="total-box">
-                <p style="font-size: 0.7rem; font-weight: 700; color: #64748B;">TOTAL ESTIMADO</p>
-                <div class="total-amount">S/ <span id="total">0.00</span></div>
-            </div>
-
-            <button class="btn-ws" onclick="sendWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> ENVIAR PEDIDO
-            </button>
-            
-            <p style="text-align:center; margin-top:15px; font-size:0.7rem; color:#CBD5E1; cursor:pointer;" onclick="emptyCart()">Vaciar todo el carrito</p>
-
-            <div class="payment-methods">
-                <p style="font-size: 0.65rem; font-weight: 800; color: #94A3B8; margin-bottom: 10px;">PAGOS POR:</p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Yape_logo.png" alt="Yape">
-                <img src="https://vignette.wikia.nocookie.net/logopedia/images/2/2a/Plin_logo.png/revision/latest?cb=20201104111244" alt="Plin">
-            </div>
-        </aside>
+<div class="footer">
+    <div class="pagos">
+        <img src="yape.png">
+        <img src="plin.png">
     </div>
+    <h3>TOTAL: S/ <span id="monto">0.00</span></h3>
+    <a href="#" class="btn-ws" onclick="enviarPedido()">🚀 PEDIR POR WHATSAPP</a>
+</div>
 
-    <script>
-        const products = [
-            {n: "Toma corriente doble", p: 6.00, i: "fa-solid fa-plug"},
-            {n: "Interruptor simple empotrar", p: 5.00, i: "fa-solid fa-toggle-on"},
-            {n: "Interruptor sobreponer", p: 3.00, i: "fa-solid fa-toggle-off"},
-            {n: "Socket colgante económico", p: 2.00, i: "fa-solid fa-lightbulb"},
-            {n: "Socket plato básico", p: 3.00, i: "fa-solid fa-circle-dot"},
-            {n: "Enchufe espiga plana", p: 1.00, i: "fa-solid fa-bolt-lightning"},
-            {n: "Enchufe visión reforzado", p: 4.00, i: "fa-solid fa-shield-halved"},
-            {n: "Caja rectangular empotrar", p: 1.00, i: "fa-solid fa-box"},
-            {n: "Caja octagonal empotrar", p: 1.00, i: "fa-solid fa-box-open"},
-            {n: "Foco led de 9 watts", p: 6.00, i: "fa-solid fa-sun"},
-            {n: "Cinta aislante 8 yardas", p: 1.50, i: "fa-solid fa-scroll"}
-        ];
+<script>
+    // LISTA DE PRODUCTOS AMPLIADA
+    const misProductos = [
+        // Electricidad (Tus originales + nuevos)
+        {nombre: "Toma corriente doble", precio: 6.00, img: "https://cdn-icons-png.flaticon.com/512/2802/2802871.png"},
+        {nombre: "Interruptor simple", precio: 5.00, img: "https://cdn-icons-png.flaticon.com/512/1041/1041065.png"},
+        {nombre: "Foco led 9 watts", precio: 6.00, img: "https://cdn-icons-png.flaticon.com/512/702/702455.png"},
+        {nombre: "Cinta aislante", precio: 1.50, img: "https://cdn-icons-png.flaticon.com/512/8226/8226123.png"},
+        {nombre: "Socket de loza", precio: 3.50, img: "https://cdn-icons-png.flaticon.com/512/1063/1063319.png"},
+        
+        // Herramientas
+        {nombre: "Martillo de uña", precio: 18.00, img: "https://cdn-icons-png.flaticon.com/512/2505/2505537.png"},
+        {nombre: "Wincha 5 metros", precio: 12.00, img: "https://cdn-icons-png.flaticon.com/512/2505/2505504.png"},
+        {nombre: "Alicate universal", precio: 15.00, img: "https://cdn-icons-png.flaticon.com/512/2505/2505436.png"},
+        {nombre: "Destornillador estrella", precio: 8.00, img: "https://cdn-icons-png.flaticon.com/512/2505/2505471.png"},
+        
+        // Gasfitería
+        {nombre: "Cinta Teflón", precio: 1.50, img: "https://cdn-icons-png.flaticon.com/512/2921/2921474.png"},
+        {nombre: "Llave de paso 1/2", precio: 14.00, img: "https://cdn-icons-png.flaticon.com/512/944/944837.png"},
+        {nombre: "Tubo PVC 1/2 agua", precio: 9.00, img: "https://cdn-icons-png.flaticon.com/512/3241/3241315.png"}
+    ];
 
-        let cart = JSON.parse(localStorage.getItem('keira_ferre_v3')) || [];
+    let total = 0;
+    let textoWhatsApp = "";
 
-        function init() {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = products.map(p => `
-                <div class="product-card">
-                    <i class="${p.i}"></i>
-                    <h3>${p.n}</h3>
-                    <div class="price">S/ ${p.p.toFixed(2)}</div>
-                    <button class="btn-add" onclick="add('${p.n}', ${p.p})">AÑADIR</button>
+    function render() {
+        const contenedor = document.getElementById('lista-productos');
+        if (!contenedor) return;
+        contenedor.innerHTML = ""; 
+        
+        misProductos.forEach(p => {
+            contenedor.innerHTML += `
+                <div class="tarjeta">
+                    <img src="${p.img}" class="img-prod">
+                    <b>${p.nombre}</b>
+                    <span class="precio">S/ ${p.precio.toFixed(2)}</span>
+                    <button class="btn-add" onclick="sumar('${p.nombre}', ${p.precio})">AÑADIR</button>
                 </div>
-            `).join('');
-            renderCart();
-        }
+            `;
+        });
+    }
 
-        function add(n, p) {
-            cart.push({n, p});
-            sync();
-        }
+    function sumar(n, p) {
+        total += p;
+        textoWhatsApp += "- " + n + " (S/ " + p.toFixed(2) + ")%0A";
+        document.getElementById('monto').innerText = total.toFixed(2);
+    }
 
-        function remove(i) {
-            cart.splice(i, 1);
-            sync();
-        }
+    function enviarPedido() {
+        if(total === 0) return alert("Por favor, selecciona productos primero");
+        const mensaje = "Hola *Ferretería DR*, deseo realizar este pedido:%0A%0A" + textoWhatsApp + "%0A*TOTAL: S/ " + total.toFixed(2) + "*";
+        window.open("https://wa.me/51991684812?text=" + mensaje);
+    }
 
-        function emptyCart() {
-            if(confirm("¿Deseas vaciar tu pedido?")) {
-                cart = [];
-                sync();
-            }
-        }
+    window.onload = render;
+</script>
 
-        function sync() {
-            localStorage.setItem('keira_ferre_v3', JSON.stringify(cart));
-            renderCart();
-        }
-
-        function renderCart() {
-            const list = document.getElementById('cart-items');
-            const total = document.getElementById('total');
-            list.innerHTML = cart.map((item, i) => `
-                <li class="cart-item">
-                    ${item.n} 
-                    <span>S/ ${item.p.toFixed(2)} <i class="fa-solid fa-circle-xmark" onclick="remove(${i})"></i></span>
-                </li>
-            `).join('');
-            const sum = cart.reduce((total, item) => total + item.p, 0);
-            total.innerText = sum.toFixed(2);
-        }
-
-        function sendWhatsApp() {
-            if(cart.length === 0) return alert("Tu carrito está vacío");
-            
-            // IMPORTANTE: Cambia el número de abajo por el tuyo real
-            const phone = "51991684812"; 
-            
-            let msg = "Hola *FERRETERÍA KEIRA GERALDINE*, mi pedido es:%0A%0A";
-            cart.forEach(x => msg += `✅ ${x.n} - S/ ${x.p.toFixed(2)}%0A`);
-            msg += `%0A💰 *TOTAL A PAGAR: S/ ${document.getElementById('total').innerText}*`;
-            
-            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${msg}`, '_blank');
-        }
-
-        init();
-    </script>
 </body>
 </html>
