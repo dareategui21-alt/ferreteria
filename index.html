@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FERRETERÍA KEIRA GERALDINE | Tienda Oficial</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #002D57; /* Azul Electrotorres */
+            --accent: #FF8A00;  /* Naranja Industrial */
+            --bg: #F8FAFC;
+            --white: #FFFFFF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #1e293b; line-height: 1.5; }
+
+        /* HEADER PROFESIONAL */
+        header {
+            background-color: var(--primary);
+            padding: 20px 5%;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo-container img {
+            height: 100px; /* Tamaño optimizado del logo */
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        /* CONTENIDO PRINCIPAL */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 30px;
+            padding: 40px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* GRILLA DE PRODUCTOS */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #E2E8F0;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+        }
+
+        .product-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .product-card h3 {
+            font-size: 0.95rem;
+            color: #475569;
+            height: 45px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .btn-add {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover { background-color: var(--accent); }
+
+        /* CARRITO LATERAL */
+        .cart-sidebar {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 180px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border: 1px solid #E2E8F0;
+        }
+
+        .cart-title {
+            text-align: center;
+            font-weight: 800;
+            font-size: 0.8rem;
+            color: #94A3B8;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #cart-items { list-style: none; }
+
+        .cart-item {
+            padding: 12px 0;
+            border-bottom: 1px dashed #E2E8F0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cart-item i { color: #EF4444; cursor: pointer; }
+
+        .total-box {
+            margin: 25px 0;
+            text-align: center;
+            background: #F1F5F9;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .total-amount { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+
+        .btn-ws {
+            background-color: #22C55E;
+            color: var(--white);
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-ws:hover { background-color: #16A34A; }
+
+        .payment-methods {
+            margin-top: 25px;
+            text-align: center;
+            border-top: 1px solid #F1F5F9;
+            padding-top: 20px;
+        }
+
+        .payment-methods img { height: 35px; margin: 0 10px; border-radius: 8px; }
+
+        @media (max-width: 1024px) {
+            .container { grid-template-columns: 1fr; }
+            .cart-sidebar { position: static; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://i.ibb.co/XrnZzH6/logo-keira.png" alt="Ferretería Keira Geraldine">
+        </div>
+        <nav>
+            <a href="#">Catálogo Digital Eléctrico 2026</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2 class="section-title"><i class="fa-solid fa-plug"></i> Materiales en Stock</h2>
+            <div class="products-grid" id="grid">
+                </div>
+        </section>
+
+        <aside class="cart-sidebar">
+            <div class="cart-title">Mi Carrito de Compras</div>
+            <ul id="cart-items"></ul>
+
+            <div class="total-box">
+                <p style="font-size: 0.7rem; font-weight: 700; color: #64748B;">TOTAL ESTIMADO</p>
+                <div class="total-amount">S/ <span id="total">0.00</span></div>
+            </div>
+
+            <button class="btn-ws" onclick="sendWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> ENVIAR PEDIDO
+            </button>
+            
+            <p style="text-align:center; margin-top:15px; font-size:0.7rem; color:#CBD5E1; cursor:pointer;" onclick="emptyCart()">Vaciar todo el carrito</p>
+
+            <div class="payment-methods">
+                <p style="font-size: 0.65rem; font-weight: 800; color: #94A3B8; margin-bottom: 10px;">PAGOS POR:</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Yape_logo.png" alt="Yape">
+                <img src="https://vignette.wikia.nocookie.net/logopedia/images/2/2a/Plin_logo.png/revision/latest?cb=20201104111244" alt="Plin">
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const products = [
+            {n: "Toma corriente doble", p: 6.00, i: "fa-solid fa-plug"},
+            {n: "Interruptor simple empotrar", p: 5.00, i: "fa-solid fa-toggle-on"},
+            {n: "Interruptor sobreponer", p: 3.00, i: "fa-solid fa-toggle-off"},
+            {n: "Socket colgante económico", p: 2.00, i: "fa-solid fa-lightbulb"},
+            {n: "Socket plato básico", p: 3.00, i: "fa-solid fa-circle-dot"},
+            {n: "Enchufe espiga plana", p: 1.00, i: "fa-solid fa-bolt-lightning"},
+            {n: "Enchufe visión reforzado", p: 4.00, i: "fa-solid fa-shield-halved"},
+            {n: "Caja rectangular empotrar", p: 1.00, i: "fa-solid fa-box"},
+            {n: "Caja octagonal empotrar", p: 1.00, i: "fa-solid fa-box-open"},
+            {n: "Foco led de 9 watts", p: 6.00, i: "fa-solid fa-sun"},
+            {n: "Cinta aislante 8 yardas", p: 1.50, i: "fa-solid fa-scroll"}
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('keira_ferre_v3')) || [];
+
+        function init() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <i class="${p.i}"></i>
+                    <h3>${p.n}</h3>
+                    <div class="price">S/ ${p.p.toFixed(2)}</div>
+                    <button class="btn-add" onclick="add('${p.n}', ${p.p})">AÑADIR</button>
+                </div>
+            `).join('');
+            renderCart();
+        }
+
+        function add(n, p) {
+            cart.push({n, p});
+            sync();
+        }
+
+        function remove(i) {
+            cart.splice(i, 1);
+            sync();
+        }
+
+        function emptyCart() {
+            if(confirm("¿Deseas vaciar tu pedido?")) {
+                cart = [];
+                sync();
+            }
+        }
+
+        function sync() {
+            localStorage.setItem('keira_ferre_v3', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function renderCart() {
+            const list = document.getElementById('cart-items');
+            const total = document.getElementById('total');
+            list.innerHTML = cart.map((item, i) => `
+                <li class="cart-item">
+                    ${item.n} 
+                    <span>S/ ${item.p.toFixed(2)} <i class="fa-solid fa-circle-xmark" onclick="remove(${i})"></i></span>
+                </li>
+            `).join('');
+            const sum = cart.reduce((total, item) => total + item.p, 0);
+            total.innerText = sum.toFixed(2);
+        }
+
+        function sendWhatsApp() {
+            if(cart.length === 0) return alert("Tu carrito está vacío");
+            
+            // IMPORTANTE: Cambia el número de abajo por el tuyo real
+            const phone = "51991684812"; 
+            
+            let msg = "Hola *FERRETERÍA KEIRA GERALDINE*, mi pedido es:%0A%0A";
+            cart.forEach(x => msg += `✅ ${x.n} - S/ ${x.p.toFixed(2)}%0A`);
+            msg += `%0A💰 *TOTAL A PAGAR: S/ ${document.getElementById('total').innerText}*`;
+            
+            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${msg}`, '_blank');
+        }
+
+        init();
+    </script>
+</body>
+</html>
